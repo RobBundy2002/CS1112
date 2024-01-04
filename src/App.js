@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function App() {
     const [name, setName] = useState('');
@@ -73,50 +74,67 @@ function App() {
 
     useEffect(() => {
         refreshCommitments();
-    }, []); // Call refreshCommitments on component mount
+    }, []);
 
     return (
-        <div>
-            <div>
+        <div className="app-container">
+            <h1 className="app-header">CS1112 Teaching Assistant Grading Form</h1>
+            <div className="form-container">
                 <h2>Add Grading Commitment</h2>
-                <label>User:</label>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                <label>Assignment:</label>
-                <input type="text" value={assignment} onChange={(e) => setAssignment(e.target.value)} />
-                <button onClick={addCommitment}>Add Commitment</button>
+                <div className="form-group">
+                    <label>User:</label>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label>Assignment:</label>
+                    <input type="text" value={assignment} onChange={(e) => setAssignment(e.target.value)} />
+                </div>
+                <button className="action-button" onClick={addCommitment}>Add Commitment</button>
             </div>
 
-            <div>
+            <div className="form-container">
                 <h2>Take Over Commitment</h2>
-                <label>Original User:</label>
-                <input type="text" value={originalUser} onChange={(e) => setOriginalUser(e.target.value)} />
-                <label>Taker:</label>
-                <input type="text" value={taker} onChange={(e) => setTaker(e.target.value)} />
-                <label>Assignment:</label>
-                <input type="text" value={assignmentTakeover} onChange={(e) => setAssignmentTakeover(e.target.value)} />
-                <button onClick={takeOverCommitment}>Take Over Commitment</button>
+                <div className="form-group">
+                    <label>Original User:</label>
+                    <input type="text" value={originalUser} onChange={(e) => setOriginalUser(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label>Taker:</label>
+                    <input type="text" value={taker} onChange={(e) => setTaker(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label>Assignment:</label>
+                    <input type="text" value={assignmentTakeover} onChange={(e) => setAssignmentTakeover(e.target.value)} />
+                </div>
+                <button className="action-button" onClick={takeOverCommitment}>Take Over Commitment</button>
             </div>
 
-            <div>
+            <div className="form-container">
                 <h2>View Commitments</h2>
-                <label>User:</label>
-                <input type="text" value={viewUser} onChange={(e) => setViewUser(e.target.value)} />
-                <button onClick={viewCommitments}>View Commitments</button>
+                <div className="form-group">
+                    <label>User:</label>
+                    <input type="text" value={viewUser} onChange={(e) => setViewUser(e.target.value)} />
+                </div>
+                <button className="action-button" onClick={viewCommitments}>View Commitments</button>
                 {commitments && commitments.map((commitment, index) => (
-                    <div key={index}>{commitment}</div>
+                    <div key={index} className="commitment-item">{commitment}</div>
                 ))}
             </div>
 
-            <div>
+            <div className="form-container">
                 <h2>Delete Commitment</h2>
-                <label>User:</label>
-                <input type="text" value={deleteUser} onChange={(e) => setDeleteUser(e.target.value)} />
-                <label>Assignment:</label>
-                <input type="text" value={deleteAssignment} onChange={(e) => setDeleteAssignment(e.target.value)} />
-                <button onClick={deleteCommitment}>Delete Commitment</button>
+                <div className="form-group">
+                    <label>User:</label>
+                    <input type="text" value={deleteUser} onChange={(e) => setDeleteUser(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label>Assignment:</label>
+                    <input type="text" value={deleteAssignment} onChange={(e) => setDeleteAssignment(e.target.value)} />
+                </div>
+                <button className="action-button" onClick={deleteCommitment}>Delete Commitment</button>
             </div>
 
-            {status && <div>{status}</div>}
+            {status && <div className="status-message">{status}</div>}
         </div>
     );
 }
