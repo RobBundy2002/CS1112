@@ -50,7 +50,6 @@ function App() {
                 setStatus(error.response.data.message);
             });
     };
-
     const deleteCommitment = () => {
         axios.post('http://localhost:3002/delete_commitment', { user: deleteUser, subject: deleteAssignment })
             .then(response => {
